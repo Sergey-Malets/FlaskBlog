@@ -1,25 +1,26 @@
-from flask import Flask
+from flask import Flask,render_template
+
 
 app = Flask(__name__)
 
 @app.route('/')
 @app.route('/home')
 def index():
-    return 'Hello world'
+    return render_template('index.html')
 
 
 @app.route('/about')
 def about():
-    return 'About us'
+    return render_template('about.html')
 
 @app.route('/my_template')
 def my_template():
-    return '<h1>My template</h1>'
+    return render_template('my_template.html')
 
-# @app.route('/user/<string:name>/<int:id>')
-# def user(name,id):
-#
-#     return "User page"+name+'-'+id
+@app.route('/user/<string:name>/<int:id>')
+def user(name,id):
+
+    return "User page: "+name+'-'+str(id)
 
 
 if __name__ == '__main__':
