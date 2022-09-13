@@ -63,6 +63,29 @@ def index():
 def about():
     return render_template('about.html')
 
+@app.route('/create_article', methods=['POST', 'GET'])
+def create_article():
+    if request.method == "POST":
+        title = request.form['title']
+        intro = request.form['intro']
+        text = request.form['text']
+
+
+        article = Article(title=title, intro=intro, text=text)
+        try:
+            db.session.add(article)
+            db.session.commit()
+            return redirect('/')
+        except:
+            return 'При добавлении статьи произошла ошибка'
+    else:
+        return render_template('create_article.html')
+
+@app.route('/posts')
+def posts():
+    articles = Article.query.order_by(Article.date).all()
+    return render_template('posts.html', articles=articles)
+
 
 @app.route('/my_template')
 def my_template():
