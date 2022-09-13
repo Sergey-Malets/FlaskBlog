@@ -61,7 +61,8 @@ def index():
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    profiles = Profiles.query.order_by(-Profiles.id).all()
+    return render_template('about.html', profiles=profiles)
 
 @app.route('/create_article', methods=['POST', 'GET'])
 def create_article():
@@ -75,7 +76,7 @@ def create_article():
         try:
             db.session.add(article)
             db.session.commit()
-            return redirect('/')
+            return redirect('/posts')
         except:
             return 'При добавлении статьи произошла ошибка'
     else:
@@ -113,7 +114,7 @@ def register():
         except:
             db.session.rollback()# откатка в состояние как будто ничего не добавлялось
             print("ошибка добавления в БД")
-        return redirect(url_for('index'))
+        return redirect(url_for('about'))
 
     return render_template('register.html', title = "Регистрация")
 

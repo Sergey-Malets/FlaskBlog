@@ -2,7 +2,14 @@
 {% block title%}about{% endblock %}
 {% block content %}
 <div class="container">
-    <h1> about </h1>
+    <h1> Зарегистрированные пользователи: </h1>
+    {% for i in profiles %}
+    <div class="card shadow-sm">
+        <h3>Имя: {{ i.name }}</h3>
+        <p>Возраст: {{ i.old }}</p>
+        <p>Город: {{ i.city }}</p>
+    </div><br>
+    {% endfor %}
 </div>
 
 {% endblock %}

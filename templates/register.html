@@ -4,13 +4,16 @@
 {% for cat, msg in get_flashed_messages(True) %}
 <div class="flash {{cat}}">{{msg}}</div>
 {% endfor %}
-<form action="" method="post" class="form-contact">
-<p><label>Имя: </label> <input type="text" name="name" value="" required />
-<p><label>Возраст: </label> <input type="text" name="old" value="" required />
-<p><label>Город: </label> <input type="text" name="city" value="" required />
-<p><label>Email: </label> <input type="text" name="email" value="" required />
-<p><label>Пароль: </label> <input type="password" name="psw" value="" required />
-<p><label>Повтор пароля: </label> <input type="password" name="psw2" value="" required />
-<p><input type="submit" value="Регистрация" />
-</form>
+<div class="container">
+    <form action="" method="post" class="form-contact">
+    <p><label>Имя: </label> <input type="text" name="name" value="" placeholder="Имя" required />
+    <p><label>Возраст: </label> <input type="text" name="old" value="" placeholder="Возраст" required />
+    <p><label>Город: </label> <input type="text" name="city" value="" placeholder="Город" required />
+    <p><label>Email: </label> <input type="text" name="email" value="" placeholder="Email" required />
+    <p><label>Пароль: </label> <input type="password" name="psw" value="" placeholder="Пароль" required />
+    <p><label>Повтор пароля: </label> <input type="password" name="psw2" value="" placeholder="Повтор пароля" required />
+    <p><input type="submit" value="Регистрация" />
+    </form>
+</div>
+
 {% endblock %}
